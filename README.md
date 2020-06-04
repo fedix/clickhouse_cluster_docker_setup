@@ -145,7 +145,7 @@ Guide for setting up a ClickHouse cluster using multiple docker containers
    ENGINE = Distributed(awesome_cluster, practice, transactions, xxHash64(__index_level_0__))
    ```
 
-   9. Finally insert the data into. On one of ClickHouse instances run
+10. Finally insert the data. On one of ClickHouse instances run
 
       ```bash
       cat transactions.json | clickhouse-client -u qwerty --password=qwerty --query="INSERT INTO practice.distr_transactions FORMAT JSONEachRow"
@@ -157,7 +157,7 @@ Guide for setting up a ClickHouse cluster using multiple docker containers
       cat transactions.parquet | clickhouse-client -u qwerty --password=qwerty --query="INSERT INTO practice.distr_transactions FORMAT Parquet"
       ```
 
-   10. Check if data was actually distributed by running queries inside both containers:
+11. Check if data was actually distributed by running queries inside both containers:
 
        ```sql
        select count() from practice.transactions
