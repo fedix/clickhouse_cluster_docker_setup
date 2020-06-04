@@ -69,7 +69,7 @@ Guide for setting up a ClickHouse cluster using multiple docker containers
 
    ```xml
    <remote_servers incl="clickhouse_remote_servers" >
-   		<awesome_cluster>
+      <awesome_cluster>
            <shard>
                <replica>
                    <host>172.17.0.2</host>
@@ -124,12 +124,12 @@ Guide for setting up a ClickHouse cluster using multiple docker containers
    ```sql
    create table practice.transactions
    (
-   amount Nullable(Float64), 
-   datetime DateTime,
-   important Nullable(UInt64),
-   user_id_in Int64,
-   user_id_out Nullable(Int64),
-   __index_level_0__ Int64
+      amount Nullable(Float64), 
+      datetime DateTime,
+      important Nullable(UInt64),
+      user_id_in Int64,
+      user_id_out Nullable(Int64),
+      __index_level_0__ Int64
    )
    ENGINE = ReplacingMergeTree(datetime)
    PARTITION BY toMonth(datetime)
