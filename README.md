@@ -3,12 +3,14 @@
 Guide for setting up a ClickHouse cluster using multiple docker containers
 
 1. Install docker
+2. Prepare. Create a folder for your data, config.xml and users.xml files. We will later mount these files to docker containers. This is handy becuase all the changes in files outside the containers will be automatically applied to the files inside containers too. You can download config.xml and users.xml from my repository (for lazy ones) or get them from container by running
 
-2. Create docker containers:
+   ```bash
+   sudo docker exec -it clickhouse_1 cat /etc/clickhouse-server/config.xml > config.xml
+   sudo docker exec -it clickhouse_1 cat /etc/clickhouse-server/users.xml > users.xml
+   ```
 
-   Create a folder for your data, config.xml and users.xml files. We will later mount these files to docker containers. This is handy becuase all the changes in files outside the containers will be automatically applied to the files inside containers too.
-
-   We connect the first instance to localhost:8123 for http requests to clickhouse(e.g., using tabix):
+3. Create docker containers. We connect the first instance to localhost:8123 for http requests to clickhouse(e.g., using tabix):
 
    ```bash
    sudo docker run -d --name clickhouse_1 \
@@ -31,18 +33,12 @@ Guide for setting up a ClickHouse cluster using multiple docker containers
        yandex/clickhouse-server
    ```
 
-3. You can check if containers were created by running 
+4. You can check if containers were created by running 
 
    ```bash
    docker ps
    ```
 
-4. You can download config.xml and users.xml from my repository (for lazy ones) or get them from container by running
-
-   ```bash
-   sudo docker exec -it clickhouse_1 cat /etc/clickhouse-server/config.xml > config.xml
-   sudo docker exec -it clickhouse_1 cat /etc/clickhouse-server/users.xml > users.xml
-   ```
 
 5. In users.xml provide password for default user and add more users if needed (users section):
 
