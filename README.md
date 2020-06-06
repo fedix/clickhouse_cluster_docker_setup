@@ -122,11 +122,11 @@ Guide for setting up a ClickHouse cluster using multiple docker containers
    ```sql
    create table practice.transactions
    (
-      amount Nullable(Float64), 
+      amount Float64, 
       datetime DateTime,
-      important Nullable(UInt64),
+      important UInt64,
       user_id_in Int64,
-      user_id_out Nullable(Int64),
+      user_id_out Int64,
       __index_level_0__ Int64
    )
    ENGINE = ReplacingMergeTree(datetime)
