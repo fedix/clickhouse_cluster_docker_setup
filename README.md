@@ -6,10 +6,12 @@ Guide for setting up a ClickHouse cluster using multiple docker containers
 2. Prepare. Create a folder for your data, config.xml and users.xml files. We will later mount these files to docker containers. This is handy becuase all the changes in files outside the containers will be automatically applied to the files inside containers too. You can download config.xml and users.xml from my repository (for lazy ones) or get them from container by running
 
    ```bash
+   sudo docker run -d --name clickhouse_1 --ulimit nofile=262144:262144 yandex/clickhouse-server
    sudo docker exec -it clickhouse_1 cat /etc/clickhouse-server/config.xml > config.xml
    sudo docker exec -it clickhouse_1 cat /etc/clickhouse-server/users.xml > users.xml
+   sudo docker stop clickhouse_1
+   sudo docker rm clickhouse_1
    ```
-
 3. Create docker containers. We connect the first instance to localhost:8123 for http requests to clickhouse(e.g., using tabix):
 
    ```bash
